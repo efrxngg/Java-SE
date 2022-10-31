@@ -1,0 +1,75 @@
+- Ciudadanos de primera clase
+Funciones como ciudadanos de primera clase se refiere a la capacidad que confiere Java 8 en adelante para tratar las funciones como Tipos de datos, que pueden declararse, recibirse cómo parámetros o enviarse (retornarse) cómo resultados.
+
+- Funciones Puras
+Genera el mismo tipo de resultado para el mismo parametro
+Son funciones en aislamientro (no dependen ni afectan a un contexto)
+Son deterministas, no generan efectos secundarios
+Son predecibles
+f(x) = x^3
+
+- Funcion Impura
+Puede invocar a otra funcion pura
+Generan Efectos secundarios
+Dependen del estado del sistema y de su contexto.
+Pueden generar efectos secundarios, es decir, pueden afectar a otros flujos de datos o verse afectadas por otros flujos de datos subyacentes. No son predecibles.
+
+- Funcion de orden mayor
+Toma otra funcion como parametro
+Retorna una funcion como resultado
+Ventajas
+    Puedes pasar comportamientos
+    Compartir un medio de comunicacion(callbacks)
+    Compartir logica / reglas
+
+- Lambda
+    No tiene nombre
+    Son funciones anonimas
+    Parten de un concepto matematico(proponia que se podian obtener resultados de una operacion a partir de funciones anonimas)
+        int fun(...)    |   x->...
+    
+
+
+- Inmutabilidad
+Una vez creado un dato ya no puede alterarse
+facilita crear funciones puras
+facilita usar threads/concurrencia
+
+- Interfaces funcionales
+- Function<Tipo, Tipo> 
+    Representa una función que acepta un argumento y produce un resultado.
+- Predicate<Tipo> 
+    Permite testear si algo es valido retorna true o false
+- Consumer<Tipo> 
+    Es una interfaz generica 
+    Trabaja sobre un tipo de dato
+    Acepta un solo valor y no devuelve valor alguno
+    Puede llegar a ser util cuando se desea realizar operaciones sobre el tipo
+- Supplier<> 
+    Es una interfas que se encarga de generar datos
+    Es una expresion que no tienen parámetros pero devuelven un resultado.
+- UnaryOperator<Tipo> 
+    Solo se especifica un solo tipo de dato. Se entiende que tendrá como resultado el mismo tipo.
+- Bifunction<Tipo, Tipo, TipoR> 
+    2 parámetros de entrada 1 salida, se tiene que especificar el tipo de dato. Puede tener diferentes tipos de entradas como también diferente tipo de salida.
+- BinaryOpertaror<Tipo> 
+    Solo se especifica un tipo de dato. Se entiende que tendrá 2 parámetros de entrada y el uno de retorno todos del mismo tipo
+- Comparator<Tipo> 
+    Un comparetor es un funcion de recibe dos parametro y decide cual es mas grande
+
+- SAM 
+    Single Abstract Method
+    Es una interfaz que tiene un solo metodo sin definir
+
+- Referencia A Metodo o Colon Opertator(::)
+    También conocido como operador de referencia de método en Java, se usa para llamar a un método refiriéndose a él directamente con la ayuda de su clase. Se comportan exactamente como las expresiones lambda. La única diferencia que tiene con las expresiones lambda es que utiliza una referencia directa al método por nombre en lugar de proporcionar un delegado al método. Se puede utilizar la referencia de método o el operador de dos puntos dobles para hacer referencia
+    
+    Un metodo estatico: (ClassName::methodName)
+    Una instancia de metodo: (objectOfClass::methodName)
+    Un constructor: (super::methodName)
+
+    Java infiere los tipos de datos en tiempom de ejecucion
+
+- Funcion Compuesta 
+    Primero se ejecuta la funcion compuesta y despues la que se mando a llamar
+    Sirve para agregar pasos antes de la ejecucion de una funcion
