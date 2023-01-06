@@ -6,10 +6,26 @@ public class Devsu {
     public static void main(String[] args) {
 //        int[] data = {-7, -10, -13, -8, -4, -7, -12, -3, -3, -6, -1, -6, 1};
 //        System.out.println(exists(data, 9));
+
 //        System.out.println(computeClosestToZero(data));
 
-        System.out.println(62>>1);
+//        String[] remaining = filterWords(new String[]{"Hola", "Como", "Estas"}, "a");
+//        for (String s : remaining) {
+//            System.out.println(s);
+//        }
+    }
 
+    public static String[] filterWords(String[] words, String letters) {
+        // Write your code here
+        // To debug: System.err.println("Debug messages...");
+        var r = new String[words.length];
+        for (int i = 0, c = 0; i < words.length; i++) {
+            if (words[i].contains(letters)) {
+                r[c] = words[i];
+                c++;
+            }
+        }
+        return r;
     }
 
     //El objetivo de este ejercicio es verificar la presencia de un número en una matriz.
@@ -29,17 +45,22 @@ public class Devsu {
                 closest = number;
             }
         }
-
         return closest;
 
     }
 
-    public static void functionx(){
+    /**
+     * @return the sum of integers whose index is between n1 and n2
+     */
+    public static int calc(int[] array, int n1, int n2) {
+        if (!(0 <= n1 && n1 <= n2 && n2 < array.length))
+            throw new IllegalArgumentException();
 
-    }
-
-    public static void function(){
-
+        int result = 0;
+        for (int n : array) {
+            result += n;
+        }
+        return result;
     }
 
 }
