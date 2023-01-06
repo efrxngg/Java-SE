@@ -4,11 +4,11 @@ Este repositorio es un registro de diversos temas relacionados con **Java SE** ,
 
 ## APIS
 
-Stream
-JDBC
+Stream  
+JDBC  
 
 ## PATRONES DE DISEÑO
 
-Creacionales
-Estructurales
-Comportamiento
+Creacionales  
+Estructurales  
+Comportamiento  
