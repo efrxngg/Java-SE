@@ -1,4 +1,4 @@
-package edu.java.se.testing.junit5.introduccion;
+package junit5.introduccion;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

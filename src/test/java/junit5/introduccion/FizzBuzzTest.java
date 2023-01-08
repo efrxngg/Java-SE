@@ -1,18 +1,18 @@
-package edu.java.se.testing.junit5.introduccion;
+package junit5.introduccion;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FizzBuzzTest {
-    private FizzBuzz fizzBuzz;
+    private static FizzBuzz fizzBuzz;
 
     //    Funcion que se ejecuta antes de los test
-    @Before
-    public void before() {
+    @BeforeAll
+    public static void before() {
         fizzBuzz = new FizzBuzz();
     }
 

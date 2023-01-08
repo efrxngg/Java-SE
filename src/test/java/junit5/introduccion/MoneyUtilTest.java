@@ -1,8 +1,9 @@
-package edu.java.se.testing.junit5.introduccion;
+package junit5.introduccion;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 //Para correr todos los casos de prueba
 public class MoneyUtilTest {
@@ -42,7 +43,7 @@ public class MoneyUtilTest {
         } catch (IllegalArgumentException e) {
             isValid = true;
         }
-        assertEquals(true, isValid);
+        assertTrue(isValid);
     }
 
 }
