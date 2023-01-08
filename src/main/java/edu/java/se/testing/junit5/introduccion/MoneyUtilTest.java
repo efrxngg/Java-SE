@@ -1,8 +1,8 @@
 package edu.java.se.testing.junit5.introduccion;
 
-import static org.junit.Assert.*;
-
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
 
 //Para correr todos los casos de prueba
 public class MoneyUtilTest {
@@ -30,12 +30,19 @@ public class MoneyUtilTest {
         assertEquals("-€1000.00", MoneyUtil.format(-1000, "€"));
     }
 
-    /* Para indicarle que espera un exception
-     * si la expcetion se lanza pasa el test
+    /*
+     Para indicarle que espera un exception
+     si la expcetion se lanza pasa el test
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void notNullEuroMoneyTest() {
-        MoneyUtil.format(1000, null);
+        boolean isValid = false;
+        try {
+            MoneyUtil.format(1000, null);
+        } catch (IllegalArgumentException e) {
+            isValid = true;
+        }
+        assertEquals(true, isValid);
     }
 
 }
