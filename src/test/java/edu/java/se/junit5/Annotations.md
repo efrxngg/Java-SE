@@ -8,5 +8,7 @@ Se componen de varios módulos diferentes de tres subproyectos diferentes.
 
 JUnit 5 = Plataforma JUnit + JUnit Júpiter + JUnit Vintage
 
+@Test
+    Los metodos con esta anotacion no pueden ser estaticos ni privados
 
 

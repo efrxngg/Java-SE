@@ -1,54 +1,139 @@
 package edu.java.se.junit5.intermedie;
 
-import edu.java.se.tecnical.interview.HirelineTopDev;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.util.concurrent.CountDownLatch;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 //Sirve para ponerle nombre a los test, tanto a la clase y a los metodos
 @DisplayName(value = "Aserciones Soportadas")
 class AsertionsTest {
     private static int contador = 0;
+    private final PersonDemo persona = new PersonDemo("Efren", "Galarza");
 
     //    Se ejecuta una sola vez al iniciar
     @BeforeAll
     static void initAll() {
-        System.out.println("Init");
+        System.out.println("Init Method");
     }
 
     //    Se ejecuta una vez en cada @Test o similares
     @BeforeEach
     void init() {
-        System.out.print(contador);
         contador++;
     }
 
-    //    Se ejecuta la cantidad de veces que le pongas en el value
+    @Test
+    void standarAseertions() {
+        String aux = new BigDecimal("500").add(new BigDecimal("500")).toString();
+        assertEquals("1000", aux);
+        assertEquals("1000", aux, "Optional failure message");
+        assertTrue(true, () -> "Assertion message can be lazily evaluted");
+
+    }
+
+    @Test
+    void groupAssetions() {
+        assertAll("Multiples Assertions",
+                () -> assertEquals("Efren", persona.getFirstName()),
+                () -> assertEquals("Galarza", persona.getLastName())
+        );
+    }
+
+    @Test
+    void dependentAssert() {
+//     Si  un bloque de codigo falla se omitira el siguiente bloque de codigo
+        assertAll("properties",
+                () -> {
+                    assertNotNull(persona.getFirstName());
+//                    Se ejecuta solo si la asercion previa es valida
+                    assertAll("component 1",
+                            () -> assertTrue(persona.getFirstName().startsWith("E")),
+                            () -> assertTrue(persona.getLastName().startsWith("G"))
+                    );
+                },
+                () -> {
+                    assertNotNull(persona.getFirstName());
+                    assertAll("component 2",
+                            () -> assertTrue(persona.getFirstName().endsWith("n")),
+                            () -> assertTrue(persona.getLastName().endsWith("a"))
+                    );
+                });
+    }
+
+    //    Para realizar test a erroes
+    @Test
+    void exceptionTest() {
+        Exception exception = assertThrows(ArithmeticException.class, () -> Math.floorDiv(1, 0));
+        assertEquals("/ by zero", exception.getMessage());
+    }
+
+    //    Para hacer test en relacion al tiempo
+    @Test
+    void timeoutNotExceeded() {
+        assertTimeout(Duration.ofMillis(1), () -> {
+            Thread.sleep(1);
+        });
+    }
+
+    //    Para hacer test en relacion al tiempo con resultado
+    @Test
+    void timeOutNotExceededWithResult() {
+        String result = assertTimeout(Duration.ofMillis(1), () -> {
+            Thread.sleep(1);
+            return "pass";
+        });
+        assertEquals("pass", result);
+    }
+
+    @Test
+    void timeOutNotExceededWithMethod() {
+        String saludo = assertTimeout(Duration.ofMillis(2), AssertionDemo::saluda);
+        assertEquals("Hola", saludo);
+    }
+
+    @Test
+    void timeOutExceededWithPreemptiveTermination() {
+//        Lo mismo que assertTimeout con la peculiaridad de que cuando falla arroja un mensaje similar a
+//        Tiempo de ejecucion agotado despues de 'n' s
+        assertTimeoutPreemptively(Duration.ofMillis(1), () -> Thread.sleep(1));
+    }
+
     @RepeatedTest(value = 10)
-    @DisplayName("Verdadero o falso")
+    @DisplayName("Multiples aserciones")
     void test() {
         assertTrue(true);
     }
 
     @Test
-    @Disabled("Este test no se ejecuta")
+    @Disabled
     void skippedTest() {
-        assertEquals("1", "1");
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"racecar", "radar", "able was I ere I saw elba"})
-    void palindromes(String word) {
-        assertTrue(HirelineTopDev.palindrome(word));
+    @AfterAll
+    static void destroy() {
+        System.out.println("Test :" + contador);
     }
+}
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+class PersonDemo {
+    private String firstName;
+    private String lastName;
+
+}
+
+class AssertionDemo {
+    public static String saluda() {
+        return "Hola";
+    }
 }

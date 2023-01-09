@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="edu.java.se.junit5.introduction.FizzBuzzTest" time="0.008" errors="0" skipped="0">
+<testsuite tests="0" failures="0" name="edu.java.se.junit5.intermedie.ParametresTest" time="0" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2022.3.1"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -58,8 +58,4 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="edu.java.se.junit5.introduction.FizzBuzzTest" name="edu.java.se.junit5.introduction.FizzBuzzTest.testFizz" time="0.005"/>
-  <testcase classname="edu.java.se.junit5.introduction.FizzBuzzTest" name="edu.java.se.junit5.introduction.FizzBuzzTest.testBuzz" time="0"/>
-  <testcase classname="edu.java.se.junit5.introduction.FizzBuzzTest" name="edu.java.se.junit5.introduction.FizzBuzzTest.testFizzBuzz" time="0"/>
-  <testcase classname="edu.java.se.junit5.introduction.FizzBuzzTest" name="edu.java.se.junit5.introduction.FizzBuzzTest.testChallengeFizzBuzz" time="0.003"/>
 </testsuite>

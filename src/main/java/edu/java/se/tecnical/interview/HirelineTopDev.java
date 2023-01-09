@@ -27,11 +27,11 @@ public class HirelineTopDev {
             int ib = 0;
             try {
                 ia = a[i - 1];
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException ignored) {
             }
             try {
                 ib = a[i + 1];
-            } catch (IndexOutOfBoundsException e) {
+            } catch (IndexOutOfBoundsException ignored) {
             }
 
             b[i] = ia + a[i] + ib;
@@ -56,12 +56,12 @@ public class HirelineTopDev {
     }
 
     public static boolean palindrome(String inputString) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         for (int i = inputString.length() - 1; i >= 0; i--) {
-            result += inputString.charAt(i);
+            result.append(inputString.charAt(i));
         }
 
-        return result.equals(inputString);
+        return result.toString().equals(inputString);
     }
 
     /*
@@ -75,7 +75,7 @@ public class HirelineTopDev {
         double D = 0;
         int i = 0;
         for (String n : N) {
-            double d = (n.contains("S")) ? 0 : Double.valueOf(n.split("%")[0]);
+            double d = (n.contains("S")) ? 0 : Double.parseDouble(n.split("%")[0]);
             if (n.contains("l"))
                 d *= -1;
             D += P[i] * (d / (100 + d));
