@@ -1,4 +1,13 @@
+edu/java/se/junit5/intermedie/ConditionalTestExecution.class
+edu/java/se/junit5/intermedie/ParametresTest.class
 edu/java/se/junit5/introduction/MoneyUtilTest.class
 edu/java/se/AppTest.class
-edu/java/se/junit5/intermedie/AsertionsTest.class
+edu/java/se/junit5/intermedie/AssertionDemo.class
 edu/java/se/junit5/introduction/FizzBuzzTest.class
+edu/java/se/junit5/intermedie/PersonDemo.class
+edu/java/se/junit5/intermedie/BookDemo.class
+edu/java/se/junit5/intermedie/AssumptionsTest.class
+edu/java/se/junit5/intermedie/ToStringArgumentConverter.class
+edu/java/se/junit5/intermedie/AssumptionsTest$DissableClassDemo.class
+edu/java/se/junit5/intermedie/AsertionsTest.class
+edu/java/se/junit5/intermedie/DinamicTestFactory.class
