@@ -1,9 +1,7 @@
 package edu.java.se.junit5.intermedie;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledOnOs;
-import org.junit.jupiter.api.condition.EnabledIf;
-import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.*;
 
 import static org.junit.jupiter.api.condition.OS.*;
 
@@ -42,11 +40,29 @@ public class ConditionalTest {
 
     }
 
-    
+    @Test
+    @EnabledOnJre({JRE.JAVA_8, JRE.JAVA_17})
+    void onlyOnjava() {
+
+    }
+
+    @Test
+    @DisabledOnJre({JRE.JAVA_9})
+    void disableJRE() {
+
+    }
+
+    @Test
+    @EnabledForJreRange(min = JRE.JAVA_8, max = JRE.JAVA_17)
+    void onlyrangeJRE() {
+
+    }
+
+    @Test
+    @DisabledForJreRange(min = JRE.JAVA_12, max = JRE.JAVA_16)
 
     public boolean condition() {
         return true;
     }
-
 
 }
