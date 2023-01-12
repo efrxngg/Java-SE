@@ -7,20 +7,20 @@ public class ISTG {
     static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) throws Exception {
-        validaCedula();
+        System.out.println(validaCedula());
     }
 
     public static boolean validaCedula() {
-        // char[] cedula = input.nextLine().toCharArray();
-        char[] cedula = "0954943114".toCharArray();
+        char[] cedula = input.nextLine().toCharArray();
+//        char[] cedula = "0954943114".toCharArray();
         int len = cedula.length;
 
-        if (!(len > 0 && len <= 10)) {
-            System.out.println("Ingrese un numero de cedula valida");
+        if (len != 10) {
+            System.out.println("Ingrese un numero de cedula valido");
             validaCedula();
         }
 
-        int r = 0, acumulador = 0, m;
+        int r, acumulador = 0, m;
         for (int i = 0; i < len - 1; i++) {
             m = i % 2 != 0 ? 1 : 2;
             r = Integer.parseInt(Character.toString(cedula[i])) * m;
@@ -37,9 +37,8 @@ public class ISTG {
         var aux2 = String.valueOf(acumulador).split("");
         int a = Integer.parseInt(aux2[0]);
         int b = Integer.parseInt(aux2[1]);
-        int aux3 = a > b ? a : b;
+        int aux3 = Math.max(a, b);
 
-        System.out.println(10 - aux3 == Integer.parseInt(Character.toString(cedula[len - 1])));
         return 10 - aux3 == Integer.parseInt(Character.toString(cedula[len - 1]));
     }
 

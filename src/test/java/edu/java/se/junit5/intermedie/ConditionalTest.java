@@ -60,6 +60,9 @@ public class ConditionalTest {
 
     @Test
     @DisabledForJreRange(min = JRE.JAVA_12, max = JRE.JAVA_16)
+    void disablerangeJRE(){
+
+    }
 
     public boolean condition() {
         return true;
