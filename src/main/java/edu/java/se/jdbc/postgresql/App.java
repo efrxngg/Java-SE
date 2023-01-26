@@ -52,7 +52,7 @@ public class App {
         return result;
     }
 
-    private List<String> names = List.of(
+    private final List<String> names = List.of(
             "Abigail", "Bulma", "Carlos", "Dario", "Efren", "Fajardo", "Gian", "Hugo", "Ismael",
             "Jose", "Karla", "Luis", "Mario", "Noriel", "Ñoño", "Oscar", "Pedro", "Quirga", "Roberto", "Samuel",
             "Tadeo", "Usca", "Violeta", "Walter", "Xavier", "Yoel", "Zoe");
