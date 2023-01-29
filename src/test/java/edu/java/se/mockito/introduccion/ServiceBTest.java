@@ -2,7 +2,6 @@ package edu.java.se.mockito.introduccion;
 
 import edu.java.se.tecnical.practice.test.service.ServiceA;
 import edu.java.se.tecnical.practice.test.service.ServiceB;
-import edu.java.se.tecnical.practice.test.service.impl.ServiceAImpl;
 import edu.java.se.tecnical.practice.test.service.impl.ServiceBImpl;
 import org.junit.jupiter.api.Test;
 

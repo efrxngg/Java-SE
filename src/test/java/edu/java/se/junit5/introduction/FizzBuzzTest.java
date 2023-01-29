@@ -1,7 +1,6 @@
 package edu.java.se.junit5.introduction;
 
 import edu.java.se.tecnical.practice.FizzBuzz;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.Map;
