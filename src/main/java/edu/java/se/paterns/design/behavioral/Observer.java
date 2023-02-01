@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+/*
+Permite definir un mecanismo de suscripción para notificar a varios objetos sobre cualquier evento
+*/
 public abstract class Observer {
     protected Subject subject;
 
