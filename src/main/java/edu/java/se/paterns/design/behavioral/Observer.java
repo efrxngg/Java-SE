@@ -65,10 +65,11 @@ class ObserverDemo {
         var subject = new Subject();
         new IntegerObserver(subject);
         new BinaryObserver(subject);
-        var input = new Scanner(System.in);
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Enter a number: ");
-            subject.setState(input.nextInt());
+        try (var input = new Scanner(System.in)) {
+            for (int i = 0; i < 5; i++) {
+                System.out.println("Enter a number: ");
+                subject.setState(input.nextInt());
+            }
         }
     }
 }

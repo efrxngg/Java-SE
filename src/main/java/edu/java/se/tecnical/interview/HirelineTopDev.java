@@ -2,13 +2,13 @@ package edu.java.se.tecnical.interview;
 
 public class HirelineTopDev {
     public static void main(String[] args) {
-//        sum(12);
-//        mutationArray(4, 0, 1, -2, 3);
-//        givenCentury(1905);
-//        palindrome("ojo");
-//        priceSencibility(new double[]{110, 95, 70}, new String[]{"10.0% higher than in-store",
-//                "5.0% lower than in-store",
-//                "Same as in-store"}, 5);
+       sum(12);
+       mutationArray(4, 0, 1, -2, 3);
+       givenCentury(1905);
+       palindrome("ojo");
+       priceSencibility(new double[]{110, 95, 70}, new String[]{"10.0% higher than in-store",
+               "5.0% lower than in-store",
+               "Same as in-store"}, 5);
     }
 
     private static int sum(int n) {
