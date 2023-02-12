@@ -1,75 +1,79 @@
 package edu.java.se.paterns.design.behavioral;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import lombok.AllArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.IntStream;
 
 /*
-Permite definir un mecanismo de suscripción para notificar a varios objetos sobre cualquier evento
-*/
-public abstract class Observer {
-    protected Subject subject;
-
-    public abstract void update();
+Permite definir un mecanismo de suscripción
+para notificar a varios objetos sobre cualquier evento
+ */
+public interface Observer {
+    void update();
 }
 
-class Subject {
-    private final List<Observer> observers = new ArrayList<>();
-    private int state;
+class Observable {
+    private Set<Observer> observers = new HashSet<>();
 
-    public void add(Observer o) {
-        observers.add(o);
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
+
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    public void notifyObservers() {
+        observers.forEach(Observer::update);
+    }
+}
+
+
+class Subject extends Observable {
+    private Integer state;
 
     public int getState() {
         return state;
     }
 
-    public void setState(int value) {
-        this.state = value;
-        execute();
-
-    }
-
-    private void execute() {
-        observers.forEach(Observer::update);
+    public void setState(int state) {
+        this.state = state;
+        notifyObservers();
     }
 }
 
-class IntegerObserver extends Observer {
-    public IntegerObserver(Subject subject) {
-        this.subject = subject;
-        this.subject.add(this);
-    }
+@AllArgsConstructor
+class ObservableA implements Observer {
+    private Subject subject;
 
     @Override
     public void update() {
-        System.out.println(" " + subject.getState());
+        System.out.println("Notification A:" + subject.getState());
     }
 }
 
-class BinaryObserver extends Observer {
-    public BinaryObserver(Subject subject) {
-        this.subject = subject;
-        this.subject.add(this);
-    }
+@AllArgsConstructor
+class ObservableB implements Observer {
+    private Subject subject;
 
     @Override
     public void update() {
-        System.out.println(" " + Integer.toBinaryString(subject.getState()));
+        System.out.println("Notification B:" + subject.getState());
     }
 }
 
-class ObserverDemo {
+class ObservableDemo {
     public static void main(String[] args) {
-        var subject = new Subject();
-        new IntegerObserver(subject);
-        new BinaryObserver(subject);
-        try (var input = new Scanner(System.in)) {
-            for (int i = 0; i < 5; i++) {
-                System.out.println("Enter a number: ");
-                subject.setState(input.nextInt());
-            }
-        }
+        Subject subject = new Subject();
+
+        var observableA = new ObservableA(subject);
+        var observableB = new ObservableB(subject);
+        
+        subject.addObserver(observableA);
+        subject.addObserver(observableB);
+        IntStream.range(1, 3).forEach(subject::setState);
+
     }
 }
