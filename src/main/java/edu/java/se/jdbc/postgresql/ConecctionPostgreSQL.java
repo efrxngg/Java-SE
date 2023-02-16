@@ -10,16 +10,16 @@ public class ConecctionPostgreSQL {
     public Connection getConnectionPruebas() {
         Connection conexion = null;
         Properties dbSeason = new Properties();
-        dbSeason.put("user", "postgres");
+        dbSeason.put("user", "root");
         dbSeason.put("password", "root1234");
-        String url = String.format("jdbc:postgresql://127.0.0.1:5432/pruebas");
+        String url = String.format("jdbc:postgresql://127.0.0.1:5432/prueba");
 
         try {
             System.out.println("Connection Successfull");
             conexion = DriverManager.getConnection(url, dbSeason);
 
-        } catch (SQLException ex) {
-            System.out.println(ex);
+        } catch (SQLException se) {
+            se.printStackTrace();
         }
 
         return conexion;

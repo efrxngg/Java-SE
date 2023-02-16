@@ -1,14 +1,14 @@
 package edu.java.se.jdbc.postgresql;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.stream.IntStream;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 public class App {
     private static final ConecctionPostgreSQL CONECCTION = new ConecctionPostgreSQL();
@@ -23,33 +23,35 @@ public class App {
 
     private void saveAll() {
         var connection = CONECCTION.getConnectionPruebas();
-        StringBuilder query = getAllUsers();
+        var query = bulkInsertGenerator();
         try {
             var stmt = connection.createStatement();
-            if (!stmt.execute(query.toString()))
+            if (!stmt.execute(query))
                 System.out.println("Usuarios Agregados");
 
-        } catch (SQLException e) {
+        } catch (
+                SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(query);
+//        System.out.println(query);
     }
 
-    public StringBuilder getAllUsers() {
-        int cantUsers = 10000;
-        var result = new StringBuilder("insert into usuario values ");
+    String bulkInsertGenerator() {
         var random = new Random();
-        var lenListName = names.size() - 1;
+        int size = names.size();
 
-        IntStream.range(0, cantUsers)
-                .forEach(x -> {
-                    var name = names.get((int) Math.round(random.nextDouble() * lenListName));
-                    result.append(
-                            String.format("('%s', '%s', '%s@gmail.com'), ", UUID.randomUUID(), name, name));
-                });
-        int len2 = result.length();
-        result.delete(len2 - 2, len2);
-        return result;
+        StringBuilder result = IntStream.iterate(1, i -> ++i).limit(100)
+                .parallel()
+                .mapToObj(x -> {
+                    var name = names.get(random.nextInt(size));
+                    return "('%s', '%s', '%s@gmail.com'), ".formatted(UUID.randomUUID(), name, name);
+                })
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append);
+
+        int len = result.length();
+        result.delete(len - 2, len);
+        result.insert(0, "insert into usuario values ");
+        return result.toString();
     }
 
     private final List<String> names = List.of(

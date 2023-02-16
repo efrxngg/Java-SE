@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.stream.IntStream;
-
 /*
 Stack es una estructura de datos lineal que sigue un orden particular en el que se realizan
 las operaciones. El orden puede ser LIFO (Last In First Out) o FILO (First In Last Out).
